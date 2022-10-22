@@ -75,7 +75,7 @@ $$\texttt{For critical point: } (\frac{-2}{\sqrt{13}}, \frac{1}{\sqrt{13}}) \rig
 \rightarrow \lambda = 3(\frac{-7 \pm \sqrt{101}}{\sqrt{13}})
 $$
 
-$$\texttt{One eigenvalues is positive and one is negative, so } (\frac{-2}{\sqrt{13}}, \frac{1}{\sqrt{13}}) \texttt{ is a saddle.}$$
+$$\texttt{One eigenvalue is positive and one is negative, so } (\frac{-2}{\sqrt{13}}, \frac{1}{\sqrt{13}}) \texttt{ is a saddle.}$$
 
 <br/>
 
@@ -87,5 +87,5 @@ $$\texttt{For critical point: } (\frac{2}{\sqrt{13}}, \frac{-1}{\sqrt{13}}) \rig
 \rightarrow \lambda = 3(\frac{7 \pm \sqrt{101}}{\sqrt{13}})
 $$
 
-$$\texttt{One eigenvalues is positive and one is negative, so } (\frac{2}{\sqrt{13}}, \frac{-1}{\sqrt{13}}) \texttt{ is a saddle.}$$
+$$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{13}}, \frac{-1}{\sqrt{13}}) \texttt{ is a saddle.}$$
 
