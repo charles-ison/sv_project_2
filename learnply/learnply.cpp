@@ -14,6 +14,7 @@
 #include "polyhedron.h"
 #include "trackball.h"
 #include "tmatrix.h"
+#include "project2.h"
 
 #include "drawUtil.h"
 
@@ -471,6 +472,23 @@ void keyboard(unsigned char key, int x, int y) {
 		}
 		glutPostRedisplay();
 		break;
+
+	case 'a':
+		part2A();
+		break;
+
+	case 'b':
+		part2B();
+		break;
+
+	case 'c':
+		part2C();
+		break;
+
+	case 'd':
+		part2D();
+		break;
+
 
 	case 'r':	// reset rotation and transformation
 		mat_ident(rotmat);
