@@ -15,12 +15,13 @@
 #include "trackball.h"
 #include "tmatrix.h"
 #include "project2.h"
-
+#include "polyline2.h"
 #include "drawUtil.h"
 
 Polyhedron* poly;
 std::vector<PolyLine> lines;
 std::vector<icVector3> points;
+std::vector<Polyline2> polylines;
 
 /*scene related variables*/
 const float zoomspeed = 0.9;
@@ -473,7 +474,7 @@ void keyboard(unsigned char key, int x, int y) {
 		glutPostRedisplay();
 		break;
 
-	case 'a':
+	case 'a': 
 		part2A();
 		break;
 
@@ -841,7 +842,7 @@ void display(void)
 	/*display selected elements*/
 	display_selected_vertex(poly);
 	display_selected_quad(poly);
-
+	displayPolylines(polylines);
 
 	glFlush();
 	glutSwapBuffers();

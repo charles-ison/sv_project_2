@@ -2,8 +2,11 @@
 #include "polyhedron.h"
 #include "iostream"
 #include "GL/freeglut.h"
+#include <vector>
+#include "polyline2.h"
 
 extern Polyhedron* poly;
+extern std::vector<Polyline2> polylines;
 
 double findMin() {
 	double min = poly->vlist[0]->scalar;
@@ -96,18 +99,13 @@ icVector3 convertRGBToHSV(icVector3 rgb) {
 }
 
 void part2A() {
-	double min = findMin();
-	double max = findMax();
+	Polyline2 polyline;
+	polyline.vertices.push_back(icVector3(-4, 0, 1));
+	polyline.vertices.push_back(icVector3(-3, 0, 1));
+	polyline.vertices.push_back(icVector3(-1, 0, 1));
+	polyline.rgb - icVector3(1, 0, 0);
 
-	for (int i = 0; i < poly->nverts; i++) {
-		auto& vertex = poly->vlist[i];
-		double vertexScalar = vertex->scalar;
-		double gray = (vertexScalar - min) / (max - min);
-
-		vertex->R = vertex->G = vertex->B = gray;
-	}
-
-	glutPostRedisplay();
+	polylines.push_back(polyline);
 }
 
 void part2B() {
