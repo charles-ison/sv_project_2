@@ -111,7 +111,7 @@ void part2A() {
 	polyline2.vertices.push_back(icVector3(6, 2, 1));
 	polyline2.rgb = icVector3(0, 1, 0);
 
-	polylines.push_back(polyline);
+	polyline2.merge(polyline);
 	polylines.push_back(polyline2);
 }
 

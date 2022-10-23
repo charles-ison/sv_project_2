@@ -11,10 +11,10 @@ Eugene Zhang  January 2005
 class icVector2;
 class icVector3;
 
+#include <cmath>
 // Start class icVector2
 extern "C" {
 #include <math.h>
-#include <cmath>
 #include <stdlib.h>
 }
 //#include <iostream.h>
