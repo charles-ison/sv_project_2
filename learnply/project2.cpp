@@ -103,9 +103,16 @@ void part2A() {
 	polyline.vertices.push_back(icVector3(-4, 0, 1));
 	polyline.vertices.push_back(icVector3(-3, 0, 1));
 	polyline.vertices.push_back(icVector3(-1, 0, 1));
-	polyline.rgb - icVector3(1, 0, 0);
+	polyline.rgb = icVector3(1, 0, 0);
+
+	Polyline2 polyline2;
+	polyline2.vertices.push_back(icVector3(-1, 0, 1));
+	polyline2.vertices.push_back(icVector3(6, 0, 0));
+	polyline2.vertices.push_back(icVector3(6, 2, 1));
+	polyline2.rgb = icVector3(0, 1, 0);
 
 	polylines.push_back(polyline);
+	polylines.push_back(polyline2);
 }
 
 void part2B() {

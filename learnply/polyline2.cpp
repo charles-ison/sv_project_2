@@ -31,4 +31,5 @@ void displayPolylines(std::vector<Polyline2> polylines) {
 	}
 
 	glDisable(GL_BLEND);
+	glLineWidth(1);
 }

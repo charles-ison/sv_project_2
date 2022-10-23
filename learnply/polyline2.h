@@ -1,4 +1,3 @@
-#pragma once
 #include "icVector.H"
 #include <list>
 #include <vector>
