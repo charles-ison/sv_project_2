@@ -99,20 +99,15 @@ icVector3 convertRGBToHSV(icVector3 rgb) {
 }
 
 void part2A() {
-	Polyline2 polyline;
-	polyline.rgb = icVector3(1.0, 1.0, 0.0);
-	polyline.weight = 4;
-	for (int i = 0; i < poly->nverts; i++) {
-		if (std::abs(poly->vlist[i]->x + poly->vlist[i]->y) == 5) {
-			polyline.vertices.push_back(icVector3(
-				poly->vlist[i]->x,
-				poly->vlist[i]->y,
-				poly->vlist[i]->z
-			));
+	double numberOfContours = 50.0;
+	for (int i = 0; i < numberOfContours; i++) {
+		std::list<Polyline2> edges = marchingSquare(*poly, i * 10);
+		std::vector<Polyline2> newPolylines = makePolylineFromEdges(edges);
+		for (auto polyline : newPolylines) {
+			polyline.rgb = icVector3(i / numberOfContours, 0, 0);
+			polylines.push_back(polyline);
 		}
 	}
-
-	polylines.push_back(polyline);
 	glutPostOverlayRedisplay();
 }
 

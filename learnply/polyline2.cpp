@@ -1,6 +1,7 @@
 #pragma once
 #include "polyline2.h"
 #include "GL/glew.h"
+#include "iostream"
 #include <vector>
 #define EPSILON 1.0e-5
 
@@ -85,7 +86,7 @@ Vertex lineInterpolateByScalar(const Vertex v0, const Vertex v1, const double th
 	return r;
 }
 
-void lookUpTable(std::vector<Vertex> r, const Vertex& v0, const Vertex& v1, const Vertex& v2, const Vertex& v3, const double threshold) {
+void lookUpTable(std::vector<Vertex>& r, const Vertex& v0, const Vertex& v1, const Vertex& v2, const Vertex& v3, const double threshold) {
 	r.reserve(2);
 	int id = 0;
 	if (v0.scalar <= threshold + EPSILON) {
@@ -189,7 +190,8 @@ void lookUpTable(std::vector<Vertex> r, const Vertex& v0, const Vertex& v1, cons
 	}
 }
 
-void marchingSquare(std::list<Polyline2> edges, const Polyhedron polyhedron, const double threshold) {
+std::list<Polyline2> marchingSquare(const Polyhedron& polyhedron, const double threshold) {
+	std::list<Polyline2> edges;
 	for (int i = 0; i < polyhedron.nquads; i++) {
 		std::vector<Vertex> r;
 		lookUpTable(
@@ -201,7 +203,7 @@ void marchingSquare(std::list<Polyline2> edges, const Polyhedron polyhedron, con
 			threshold);
 
 		if (r.size() > 0) {
-			for (int j = 0; j < r.size(); j++) {
+			for (int j = 0; j < r.size()/2; j++) {
 				Polyline2 polyline;
 				auto v0 = icVector3(r[j * 2].x, r[j * 2].y, r[j * 2].z);
 				auto v1 = icVector3(r[j * 2 + 1].x, r[j * 2 + 1].y, r[j * 2 + 1].z);
@@ -211,21 +213,23 @@ void marchingSquare(std::list<Polyline2> edges, const Polyhedron polyhedron, con
 			}
 		}
 	}
+	return edges;
 }
 
-void makePolylineFromEdges(std::vector<Polyline2> polylines, std::list<Polyline2> edges) {
+std::vector<Polyline2> makePolylineFromEdges(std::list<Polyline2> edges) {
 
-	polylines.reserve(edges.size());
+	std::vector<Polyline2> newPolylines;
+	newPolylines.reserve(edges.size());
 	std::list<Polyline2> edgesTemp(edges);
 	while (edgesTemp.size() > 0) {
-		polylines.push_back(edgesTemp.front());
+		newPolylines.push_back(edgesTemp.front());
 		edgesTemp.erase(edgesTemp.begin());
 		int initSize = 0;
 		while (initSize != edgesTemp.size()) {
 			initSize = edgesTemp.size();
 			for (auto i = edgesTemp.begin(); i != edgesTemp.end();) {
-				if (polylines.back().isNeighbor(*i)) {
-					polylines.back().merge(*i);
+				if (newPolylines.back().isNeighbor(*i)) {
+					newPolylines.back().merge(*i);
 					i = edgesTemp.erase(i);
 				}
 				else {
@@ -234,4 +238,5 @@ void makePolylineFromEdges(std::vector<Polyline2> polylines, std::list<Polyline2
 			}
 		}
 	}
+	return newPolylines;
 }

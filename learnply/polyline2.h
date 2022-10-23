@@ -12,6 +12,6 @@ class Polyline2 {
 		void merge(const Polyline2 polyline);
 };
 
-void marchingSquare(std::list<Polyline2> edges, const Polyhedron polyhedron, const double threshold);
+std::list<Polyline2> marchingSquare(const Polyhedron& polyhedron, const double threshold);
 void displayPolylines(std::vector<Polyline2> polylines);
-void makePolylineFromEdges(std::vector<Polyline2> polyline, std::list<Polyline2> edges);
+std::vector<Polyline2> makePolylineFromEdges(std::list<Polyline2> edges);
