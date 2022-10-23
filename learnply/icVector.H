@@ -14,6 +14,7 @@ class icVector3;
 // Start class icVector2
 extern "C" {
 #include <math.h>
+#include <cmath>
 #include <stdlib.h>
 }
 //#include <iostream.h>
@@ -295,6 +296,10 @@ public:
 	inline icVector3& operator-=(const icVector3& a);
 	inline icVector3& operator*=(const icVector3& a);
 	inline icVector3& operator/=(const icVector3& a);
+
+	inline double length() {
+		return std::sqrt(entry[0] * entry[0] + entry[1] * entry[1] + entry[2] * entry[2]);
+	}
 
 public:
 	union {

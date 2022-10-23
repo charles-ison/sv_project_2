@@ -2,9 +2,13 @@
 #include "polyline2.h"
 #include "GL/glew.h"
 #include <vector>
+#define EPSILON 1.0e-5
 
 bool Polyline2::isNeighbor(const Polyline2 polyline) {
-	return true;
+	return (vertices.front() - polyline.vertices.front()).length() < EPSILON ||
+		(vertices.front() - polyline.vertices.back()).length() < EPSILON ||
+		(vertices.back() - polyline.vertices.front()).length() < EPSILON ||
+		(vertices.back() - polyline.vertices.back()).length() < EPSILON;
 }
 
 bool Polyline2::merge(const Polyline2 polyline) {
