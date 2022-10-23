@@ -100,19 +100,20 @@ icVector3 convertRGBToHSV(icVector3 rgb) {
 
 void part2A() {
 	Polyline2 polyline;
-	polyline.vertices.push_back(icVector3(-4, 0, 1));
-	polyline.vertices.push_back(icVector3(-3, 0, 1));
-	polyline.vertices.push_back(icVector3(-1, 0, 1));
-	polyline.rgb = icVector3(1, 0, 0);
+	polyline.rgb = icVector3(1.0, 1.0, 0.0);
+	polyline.weight = 4;
+	for (int i = 0; i < poly->nverts; i++) {
+		if (std::abs(poly->vlist[i]->x + poly->vlist[i]->y) == 5) {
+			polyline.vertices.push_back(icVector3(
+				poly->vlist[i]->x,
+				poly->vlist[i]->y,
+				poly->vlist[i]->z
+			));
+		}
+	}
 
-	Polyline2 polyline2;
-	polyline2.vertices.push_back(icVector3(-1, 0, 1));
-	polyline2.vertices.push_back(icVector3(6, 0, 0));
-	polyline2.vertices.push_back(icVector3(6, 2, 1));
-	polyline2.rgb = icVector3(0, 1, 0);
-
-	polyline2.merge(polyline);
-	polylines.push_back(polyline2);
+	polylines.push_back(polyline);
+	glutPostOverlayRedisplay();
 }
 
 void part2B() {
