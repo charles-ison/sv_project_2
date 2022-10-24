@@ -193,18 +193,51 @@ void part2D() {
 	glutPostOverlayRedisplay();
 }
 
-void part3A() {
+std::list<Vertex> getCriticalPoints() {
 	double min = findMin();
 	double max = findMax();
 
-	for (int i = 0; i < poly->nquads; i++) {
-		Vertex x1 = poly->qlist[i]->verts[0]->x;
-		double vertexScalar = x1->scalar;
-	}
+	std::list<Vertex> criticalPoints;
 
-	glutPostRedisplay();
+	for (int i = 0; i < poly->nquads; i++) {
+		Quad* quad = poly->qlist[i];
+		Vertex* x1y2 = quad->verts[0];
+		Vertex* x2y2 = quad->verts[1];
+		Vertex* x1y1 = quad->verts[2];
+		Vertex* x2y1 = quad->verts[3];
+
+		double x1 = x1y2->x;
+		double x2 = x2y2->x;
+		double y1 = x1y1->y;
+		double y2 = x1y2->y;
+
+		double x1y1Scalar = x1y1->scalar;
+		double x1y2Scalar = x1y2->scalar;
+		double x2y1Scalar = x2y1->scalar;
+		double x2y2Scalar = x2y2->scalar;
+
+		double x0 = (x2 * x1y1Scalar - x1 * x2y1Scalar - x2 * x1y2Scalar + x1 * x2y2Scalar) / (x1y1Scalar - x2y1Scalar - x1y2Scalar + x2y2Scalar);
+		double y0 = (y2 * x1y1Scalar - y2 * x2y1Scalar - y1 * x1y2Scalar + y1 * x2y2Scalar) / (x1y1Scalar - x2y1Scalar - x1y2Scalar + x2y2Scalar);
+
+		bool criticalPoint = true;
+		for(Edge* edge : quad->edges) {
+			Vertex* vertex0 = edge->verts[0];
+			Vertex* vertex1 = edge->verts[1];
+			if (vertex0->x == x0 && vertex1->x == x0) {
+				criticalPoint = false;
+			}
+			else if (vertex0->y == y0 && vertex1->y == y0) {
+				criticalPoint = false;
+			}
+		}
+
+		if (criticalPoint) {
+			criticalPoints.push_back(Vertex(x0, y0, 0.0));
+		}
+	}
+	return criticalPoints;
 }
 
 void part3B() {
-
+	
 }

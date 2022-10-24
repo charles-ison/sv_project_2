@@ -17,6 +17,7 @@
 #include "project2.h"
 #include "polyline2.h"
 #include "drawUtil.h"
+#include "iostream"
 
 Polyhedron* poly;
 std::vector<PolyLine> lines;
@@ -400,7 +401,7 @@ void display_selected_vertex(Polyhedron* this_poly)
 	}
 
 	Vertex* temp_v = this_poly->vlist[this_poly->selected_vertex];
-	drawDot(temp_v->x, temp_v->y, temp_v->z, 0.15, 1.0, 0.0,0.0);
+	drawDot(temp_v->x, temp_v->y, temp_v->z, 0.15, 1.0, 0.0, 0.0);
 
 	CHECK_GL_ERROR();
 }
@@ -464,38 +465,34 @@ void keyboard(unsigned char key, int x, int y) {
 		glutPostRedisplay();
 		break;
 
-	case '6':	// add your own display mode
+	case 'a': 
 		display_mode = 6;
-		{
-
-			// your code goes here
-			
-		}
 		glutPostRedisplay();
 		break;
 
-	case 'a': 
-		part2A();
-		break;
-
 	case 'b':
-		part2B();
+		display_mode = 7;
+		glutPostRedisplay();
 		break;
 
 	case 'c':
-		part2C();
+		display_mode = 8;
+		glutPostRedisplay();
 		break;
 
 	case 'd':
-		part2D();
+		display_mode = 9;
+		glutPostRedisplay();
 		break;
 
 	case 'e':
-		part3A();
+		display_mode = 10;
+		glutPostRedisplay();
 		break;
 
 	case 'f':
-		part3B();
+		display_mode = 11;
+		glutPostRedisplay();
 		break;
 
 	case 'r':	// reset rotation and transformation
@@ -862,6 +859,30 @@ void display(void)
 Diaplay the polygon with visualization results
 ******************************************************************************/
 
+void drawBasicSolidPoly() {
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
+	glEnable(GL_LIGHT1);
+
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	GLfloat mat_diffuse[4] = { 0.24, 0.4, 0.47, 0.0 };
+	GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+	glMaterialf(GL_FRONT, GL_SHININESS, 50.0);
+
+	for (int i = 0; i < poly->nquads; i++) {
+		Quad* temp_q = poly->qlist[i];
+		glBegin(GL_POLYGON);
+		for (int j = 0; j < 4; j++) {
+			Vertex* temp_v = temp_q->verts[j];
+			glNormal3d(temp_v->normal.entry[0], temp_v->normal.entry[1], temp_v->normal.entry[2]);
+			glVertex3d(temp_v->x, temp_v->y, temp_v->z);
+		}
+		glEnd();
+	}
+}
+
 void display_polyhedron(Polyhedron* poly)
 {
 	unsigned int i, j;
@@ -877,27 +898,7 @@ void display_polyhedron(Polyhedron* poly)
 	{
 	case 1:	// solid color display with lighting
 	{
-		glEnable(GL_LIGHTING);
-		glEnable(GL_LIGHT0);
-		glEnable(GL_LIGHT1);
-
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-		GLfloat mat_diffuse[4] = { 0.24, 0.4, 0.47, 0.0 };
-		GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
-		glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
-		glMaterialf(GL_FRONT, GL_SHININESS, 50.0);
-
-		for (int i = 0; i < poly->nquads; i++) {
-			Quad* temp_q = poly->qlist[i];
-			glBegin(GL_POLYGON);
-			for (int j = 0; j < 4; j++) {
-				Vertex* temp_v = temp_q->verts[j];
-				glNormal3d(temp_v->normal.entry[0], temp_v->normal.entry[1], temp_v->normal.entry[2]);
-				glVertex3d(temp_v->x, temp_v->y, temp_v->z);
-			}
-			glEnd();
-		}
+		drawBasicSolidPoly();
 	}
 	break;
 
@@ -946,27 +947,7 @@ void display_polyhedron(Polyhedron* poly)
 
 	case 4: // points and lines drawing example
 	{
-		glEnable(GL_LIGHTING);
-		glEnable(GL_LIGHT0);
-		glEnable(GL_LIGHT1);
-
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-		GLfloat mat_diffuse[4] = { 0.24, 0.4, 0.47, 0.0 };
-		GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
-		glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
-		glMaterialf(GL_FRONT, GL_SHININESS, 50.0);
-
-		for (int i = 0; i < poly->nquads; i++) {
-			Quad* temp_q = poly->qlist[i];
-			glBegin(GL_POLYGON);
-			for (int j = 0; j < 4; j++) {
-				Vertex* temp_v = temp_q->verts[j];
-				glNormal3d(temp_v->normal.entry[0], temp_v->normal.entry[1], temp_v->normal.entry[2]);
-				glVertex3d(temp_v->x, temp_v->y, temp_v->z);
-			}
-			glEnd();
-		}
+		drawBasicSolidPoly();
 
 		// draw lines
 		for (int k = 0; k < lines.size(); k++)
@@ -991,11 +972,51 @@ void display_polyhedron(Polyhedron* poly)
 	}
 	break;
 
-	case 6: // add your own display mode
+	case 6:
+	{
+		drawBasicSolidPoly();
+		part2A();
+	}
+	break;
+
+	case 7:
+	{
+		drawBasicSolidPoly();
+		part2B();
+	}
+	break;
+
+	case 8:
+	{
+		drawBasicSolidPoly();
+		part2C();
+	}
+	break;
+
+	case 9:
+	{
+		drawBasicSolidPoly();
+		part2D();
+	}
+	break;
+
+	case 10: 
+	{
+		drawBasicSolidPoly();
+
+		std::list<Vertex> criticalPoints = getCriticalPoints();
+		for (Vertex criticalPoint : criticalPoints) {
+			//std::cout << criticalPoint.x << std::endl;
+			drawDot(criticalPoint.x, criticalPoint.y, criticalPoint.z, 0.15, 0.0, 0.5, 0.0);
+		}
+
+		break;
+	}
+	break;
+
+	case 11:
 	{
 		
-		// your code goes here
-
 	}
 	break;
 
