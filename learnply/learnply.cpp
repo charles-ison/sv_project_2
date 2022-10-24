@@ -490,6 +490,13 @@ void keyboard(unsigned char key, int x, int y) {
 		part2D();
 		break;
 
+	case 'e':
+		part3A();
+		break;
+
+	case 'f':
+		part3B();
+		break;
 
 	case 'r':	// reset rotation and transformation
 		mat_ident(rotmat);

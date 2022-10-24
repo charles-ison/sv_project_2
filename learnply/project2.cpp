@@ -192,3 +192,19 @@ void part2D() {
 	}
 	glutPostOverlayRedisplay();
 }
+
+void part3A() {
+	double min = findMin();
+	double max = findMax();
+
+	for (int i = 0; i < poly->nquads; i++) {
+		Vertex x1 = poly->qlist[i]->verts[0]->x;
+		double vertexScalar = x1->scalar;
+	}
+
+	glutPostRedisplay();
+}
+
+void part3B() {
+
+}
