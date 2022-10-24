@@ -225,11 +225,6 @@ std::list<Vertex> getCriticalPoints() {
 		Vertex* x1y1 = quad->verts[2];
 		Vertex* x2y1 = quad->verts[3];
 
-		//std::cout << "x2y2: " << x2y2->x << " " << x2y2->y << std::endl;
-		//std::cout << "x1y2: " << x1y2->x << " " << x1y2->y << std::endl;
-		//std::cout << "x1y1: " << x1y1->x << " " << x1y1->y << std::endl;
-		//std::cout << "x2y1: " << x2y1->x << " " << x2y1->y << std::endl;
-
 		double x1 = x1y2->x;
 		double x2 = x2y2->x;
 		double y1 = x1y1->y;
