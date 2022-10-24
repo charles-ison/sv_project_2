@@ -3,6 +3,7 @@
 #include "iostream"
 #include "GL/freeglut.h"
 #include <vector>
+#include <set>
 #include "polyline2.h"
 
 extern Polyhedron* poly;
@@ -194,12 +195,28 @@ void part2D() {
 }
 
 std::list<Vertex> getCriticalPoints() {
-	double min = findMin();
-	double max = findMax();
-
 	std::list<Vertex> criticalPoints;
+	enum Relationship {min, max};
 
-	Quad* quad = poly->qlist[0];
+	for (int i = 0; i < poly->nverts; i++) {
+		std::set<Relationship> relationships;
+		Vertex* potentialCriticalPoint = poly->vlist[i];
+		for (int j = 0; j < potentialCriticalPoint->nquads; j++) {
+			Quad* quad = potentialCriticalPoint->quads[j];
+			for (int k = 0; k < 4; k++) {
+				Vertex* vertex = quad->verts[k];
+				if (potentialCriticalPoint->scalar < vertex->scalar) {
+					relationships.insert(min);
+				}
+				else if (potentialCriticalPoint->scalar > vertex->scalar) {
+					relationships.insert(max);
+				}				
+			}
+		}
+		if (relationships.size() == 1) {
+			criticalPoints.push_back(*potentialCriticalPoint);
+		}
+	}
 
 	for (int i = 0; i < poly->nquads; i++) {
 		Quad* quad = poly->qlist[i];
@@ -229,8 +246,8 @@ std::list<Vertex> getCriticalPoints() {
 		bool criticalPoint = true;
 
 		if (x0 > x1 && x0 < x2 && y0 > y1 && y0 < y2) {
-			std::cout << x0 << " " << y0 << std::endl;
-			criticalPoints.push_back(Vertex(x0, y0, 0.0));
+			double zAverage = (x2y2->z + x1y2->z + x2y1->z + x2y2->z) / 4;
+			criticalPoints.push_back(Vertex(x0, y0, zAverage));
 		}
 	}
 	return criticalPoints;
