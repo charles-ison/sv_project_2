@@ -13,33 +13,30 @@ bool Polyline2::isNeighbor(const Polyline2 polyline) {
 }
 
 void Polyline2::merge(const Polyline2 polyline) {
+	Polyline2 polylineCopy = polyline;
 	if ((vertices.front() - polyline.vertices.front()).length() < EPSILON) {
-		Polyline2 polylineCopy = polyline;
 		polylineCopy.vertices.pop_front();
-		for (auto i = polyline.vertices.begin(); i != polyline.vertices.end(); i++) {
+		for (auto i = polylineCopy.vertices.begin(); i != polylineCopy.vertices.end(); i++) {
 			vertices.push_front(*i);
 		}
 	}
 	else if ((vertices.front() - polyline.vertices.back()).length() < EPSILON) {
-		Polyline2 polylineCopy = polyline;
 		polylineCopy.vertices.pop_back();
 		polylineCopy.vertices.reverse();
-		for (auto i = polyline.vertices.begin(); i != polyline.vertices.end(); i++) {
+		for (auto i = polylineCopy.vertices.begin(); i != polylineCopy.vertices.end(); i++) {
 			vertices.push_front(*i);
 		}
 	}
 	else if ((vertices.back() - polyline.vertices.front()).length() < EPSILON) {
-		Polyline2 polylineCopy = polyline;
 		polylineCopy.vertices.pop_front();
-		for (auto i = polyline.vertices.begin(); i != polyline.vertices.end(); i++) {
+		for (auto i = polylineCopy.vertices.begin(); i != polylineCopy.vertices.end(); i++) {
 			vertices.push_back(*i);
 		}
 	}
 	else if ((vertices.back() - polyline.vertices.back()).length() < EPSILON) {
-		Polyline2 polylineCopy = polyline;
 		polylineCopy.vertices.pop_back();
 		polylineCopy.vertices.reverse();
-		for (auto i = polyline.vertices.begin(); i != polyline.vertices.end(); i++) {
+		for (auto i = polylineCopy.vertices.begin(); i != polylineCopy.vertices.end(); i++) {
 			vertices.push_back(*i);
 		}
 	}

@@ -1010,7 +1010,7 @@ void display_polyhedron(Polyhedron* poly)
 
 		std::list<Vertex> criticalPoints = getCriticalPoints();
 		for (Vertex criticalPoint : criticalPoints) {
-			drawDot(criticalPoint.x, criticalPoint.y, criticalPoint.z, 0.15, 1.0, 1.0, 1.0);
+			drawDot(criticalPoint.x, criticalPoint.y, criticalPoint.z, 0.15, 0.0, 0.90, 0.0);
 		}
 		glutPostRedisplay();
 
