@@ -213,17 +213,30 @@ std::list<Vertex> getCriticalPoints() {
 		double y1 = x1y1->y;
 		double y2 = x1y2->y;
 
+		std::cout << "x1: " << x1 << std::endl;
+		std::cout << "x2: " << x2 << std::endl;
+		std::cout << "y1: " << y1 << std::endl;
+		std::cout << "y2: " << y2 << std::endl;
+
 		double x1y1Scalar = x1y1->scalar;
 		double x1y2Scalar = x1y2->scalar;
 		double x2y1Scalar = x2y1->scalar;
 		double x2y2Scalar = x2y2->scalar;
 
+		std::cout << "x1y1Scalar: " << x1y1Scalar << std::endl;
+		std::cout << "x1y2Scalar: " << x1y2Scalar << std::endl;
+		std::cout << "x2y1Scalar: " << x2y1Scalar << std::endl;
+		std::cout << "x2y2Scalar: " << x2y2Scalar << std::endl;
+
 		double x0 = (x2 * x1y1Scalar - x1 * x2y1Scalar - x2 * x1y2Scalar + x1 * x2y2Scalar) / (x1y1Scalar - x2y1Scalar - x1y2Scalar + x2y2Scalar);
 		double y0 = (y2 * x1y1Scalar - y2 * x2y1Scalar - y1 * x1y2Scalar + y1 * x2y2Scalar) / (x1y1Scalar - x2y1Scalar - x1y2Scalar + x2y2Scalar);
 
+		std::cout << "x0: " << x0 << std::endl;
+		std::cout << "y0: " << y0 << std::endl;
+
 		bool criticalPoint = true;
 
-		if (x0 != x1 && x0 != x2 && y0 != y1 && y0 != y2) {
+		if (x0 < x1 && x0 > x2 && y0 > y1 && y0 < y2) {
 			criticalPoints.push_back(Vertex(x0, y0, 0.0));
 		}
 	}
