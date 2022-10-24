@@ -209,6 +209,7 @@ std::list<Polyline2> marchingSquare(const Polyhedron& polyhedron, const double t
 				auto v1 = icVector3(r[j * 2 + 1].x, r[j * 2 + 1].y, r[j * 2 + 1].z);
 				polyline.vertices.push_back(v0);
 				polyline.vertices.push_back(v1);
+				polyline.scalar = r[j].scalar;
 				edges.push_back(polyline);
 			}
 		}

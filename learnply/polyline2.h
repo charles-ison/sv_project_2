@@ -8,6 +8,7 @@ class Polyline2 {
 		std::list<icVector3> vertices;
 		icVector3 rgb = icVector3(1.0, 0.0, 0.0);
 		double weight = 1.0;
+		double scalar = 0.0;
 		bool isNeighbor(const Polyline2 polyline);
 		void merge(const Polyline2 polyline);
 };

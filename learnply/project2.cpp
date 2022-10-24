@@ -99,12 +99,13 @@ icVector3 convertRGBToHSV(icVector3 rgb) {
 }
 
 void part2A() {
-	double numberOfContours = 50.0;
+	polylines.clear();
+	double numberOfContours = 20.0;
 	for (int i = 0; i < numberOfContours; i++) {
 		std::list<Polyline2> edges = marchingSquare(*poly, i * 10);
 		std::vector<Polyline2> newPolylines = makePolylineFromEdges(edges);
 		for (auto polyline : newPolylines) {
-			polyline.rgb = icVector3(i / numberOfContours, 0, 0);
+			polyline.rgb = icVector3(1, 0, 0);
 			polylines.push_back(polyline);
 		}
 	}
@@ -112,54 +113,51 @@ void part2A() {
 }
 
 void part2B() {
-	double min = findMin();
-	double max = findMax();
+	polylines.clear();
+	double numberOfContours = 20.0;
+	for (int i = 0; i < numberOfContours; i++) {
+		std::list<Polyline2> edges = marchingSquare(*poly, i * 10);
+		std::vector<Polyline2> newPolylines = makePolylineFromEdges(edges);
+		for (auto polyline : newPolylines) {
+			icVector3 redRGB(1.0, 0.0, 0.0);
+			icVector3 blueRGB(0.0, 0.0, 1.0);
+			icVector3 redHSV = convertRGBToHSV(redRGB);
+			icVector3 blueHSV = convertRGBToHSV(blueRGB);
 
-	for (int i = 0; i < poly->nverts; i++) {
-		auto& vertex = poly->vlist[i];
-		double vertexScalar = vertex->scalar;
+			double redScalar = i / numberOfContours;
+			double blueScalar = (20 - i) / numberOfContours;
+			icVector3 newHSV = (redHSV * redScalar) + (blueHSV * blueScalar);
+			polyline.rgb = convertHSVToRGB(newHSV);
 
-		icVector3 red(1.0, 0.0, 0.0);
-		icVector3 blue(0.0, 0.0, 1.0);
-
-		double redScalar = (vertexScalar - min) / (max - min);
-		double blueScalar = (max - vertexScalar) / (max - min);
-
-		icVector3 newRGB = (red * redScalar) + (blue * blueScalar);
-
-		vertex->R = newRGB.x;
-		vertex->G = newRGB.y;
-		vertex->B = newRGB.z;
+			polylines.push_back(polyline);
+		}
 	}
-
-	glutPostRedisplay();
+	glutPostOverlayRedisplay();
 }
 
 void part2C() {
+
 	double min = findMin();
 	double max = findMax();
 
 	for (int i = 0; i < poly->nverts; i++) {
 		auto& vertex = poly->vlist[i];
 		double vertexScalar = vertex->scalar;
-
-		icVector3 redRGB(1.0, 0.0, 0.0);
-		icVector3 blueRGB(0.0, 0.0, 1.0);
-		icVector3 redHSV = convertRGBToHSV(redRGB);
-		icVector3 blueHSV = convertRGBToHSV(blueRGB);
-
-		double redScalar = (vertexScalar - min) / (max - min);
-		double blueScalar = (max - vertexScalar) / (max - min);
-
-		icVector3 newHSV = (redHSV * redScalar) + (blueHSV * blueScalar);
-		icVector3 newRGB = convertHSVToRGB(newHSV);
-
-		vertex->R = newRGB.x;
-		vertex->G = newRGB.y;
-		vertex->B = newRGB.z;
+		double height = (vertexScalar - min) / (max - min);
+		vertex->z = 10 * height;
 	}
 
-	glutPostRedisplay();
+	polylines.clear();
+	double numberOfContours = 20.0;
+	for (int i = 0; i < numberOfContours; i++) {
+		std::list<Polyline2> edges = marchingSquare(*poly, i * 10);
+		std::vector<Polyline2> newPolylines = makePolylineFromEdges(edges);
+		for (auto polyline : newPolylines) {
+			polyline.rgb = icVector3(1, 0, 0);
+			polylines.push_back(polyline);
+		}
+	}
+	glutPostOverlayRedisplay();
 }
 
 void part2D() {
@@ -170,8 +168,27 @@ void part2D() {
 		auto& vertex = poly->vlist[i];
 		double vertexScalar = vertex->scalar;
 		double height = (vertexScalar - min) / (max - min);
-		vertex->z = 10*height;
+		vertex->z = 10 * height;
 	}
 
-	glutPostRedisplay();
+	polylines.clear();
+	double numberOfContours = 20.0;
+	for (int i = 0; i < numberOfContours; i++) {
+		std::list<Polyline2> edges = marchingSquare(*poly, i * 10);
+		std::vector<Polyline2> newPolylines = makePolylineFromEdges(edges);
+		for (auto polyline : newPolylines) {
+			icVector3 redRGB(1.0, 0.0, 0.0);
+			icVector3 blueRGB(0.0, 0.0, 1.0);
+			icVector3 redHSV = convertRGBToHSV(redRGB);
+			icVector3 blueHSV = convertRGBToHSV(blueRGB);
+
+			double redScalar = i / numberOfContours;
+			double blueScalar = (20 - i) / numberOfContours;
+			icVector3 newHSV = (redHSV * redScalar) + (blueHSV * blueScalar);
+			polyline.rgb = convertHSVToRGB(newHSV);
+
+			polylines.push_back(polyline);
+		}
+	}
+	glutPostOverlayRedisplay();
 }
