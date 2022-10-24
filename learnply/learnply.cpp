@@ -92,7 +92,7 @@ Main program.
 int main(int argc, char* argv[])
 {
 	/*load mesh from ply file*/
-	FILE* this_file = fopen("../data/scalar_data/r14.ply", "r");
+	FILE* this_file = fopen("../data/scalar_data/r12.ply", "r");
 	poly = new Polyhedron(this_file);
 	fclose(this_file);
 	
@@ -1006,7 +1006,6 @@ void display_polyhedron(Polyhedron* poly)
 
 		std::list<Vertex> criticalPoints = getCriticalPoints();
 		for (Vertex criticalPoint : criticalPoints) {
-			//std::cout << criticalPoint.x << std::endl;
 			drawDot(criticalPoint.x, criticalPoint.y, criticalPoint.z, 0.15, 0.0, 0.5, 0.0);
 		}
 

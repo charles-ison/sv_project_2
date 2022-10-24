@@ -199,6 +199,8 @@ std::list<Vertex> getCriticalPoints() {
 
 	std::list<Vertex> criticalPoints;
 
+	Quad* quad = poly->qlist[0];
+
 	for (int i = 0; i < poly->nquads; i++) {
 		Quad* quad = poly->qlist[i];
 		Vertex* x1y2 = quad->verts[0];
@@ -220,18 +222,8 @@ std::list<Vertex> getCriticalPoints() {
 		double y0 = (y2 * x1y1Scalar - y2 * x2y1Scalar - y1 * x1y2Scalar + y1 * x2y2Scalar) / (x1y1Scalar - x2y1Scalar - x1y2Scalar + x2y2Scalar);
 
 		bool criticalPoint = true;
-		for(Edge* edge : quad->edges) {
-			Vertex* vertex0 = edge->verts[0];
-			Vertex* vertex1 = edge->verts[1];
-			if (vertex0->x == x0 && vertex1->x == x0) {
-				criticalPoint = false;
-			}
-			else if (vertex0->y == y0 && vertex1->y == y0) {
-				criticalPoint = false;
-			}
-		}
 
-		if (criticalPoint) {
+		if (x0 != x1 && x0 != x2 && y0 != y1 && y0 != y2) {
 			criticalPoints.push_back(Vertex(x0, y0, 0.0));
 		}
 	}
