@@ -9,6 +9,8 @@
 extern Polyhedron* poly;
 extern std::vector<Polyline2> polylines;
 
+int numberOfContours = 50;
+
 double findMin() {
 	double min = poly->vlist[0]->scalar;
 	for (int i = 1; i < poly->nverts; i++) {
@@ -99,11 +101,29 @@ icVector3 convertRGBToHSV(icVector3 rgb) {
 
 }
 
+void visualizeHeight() {
+	double min = findMin();
+	double max = findMax();
+
+	for (int i = 0; i < poly->nverts; i++) {
+		auto& vertex = poly->vlist[i];
+		double vertexScalar = vertex->scalar;
+		double height = (vertexScalar - min) / (max - min);
+		vertex->z = 10 * height;
+	}
+}
+
+double getInterval() {
+	double min = findMin();
+	double max = findMax();
+	return (max - min) / numberOfContours;
+}
+
 void part2A() {
 	polylines.clear();
-	double numberOfContours = 20.0;
+	double interval = getInterval();
 	for (int i = 0; i < numberOfContours; i++) {
-		std::list<Polyline2> edges = marchingSquare(*poly, i * 10);
+		std::list<Polyline2> edges = marchingSquare(*poly, i * interval);
 		std::vector<Polyline2> newPolylines = makePolylineFromEdges(edges);
 		for (auto polyline : newPolylines) {
 			polyline.rgb = icVector3(1, 0, 0);
@@ -115,9 +135,9 @@ void part2A() {
 
 void part2B() {
 	polylines.clear();
-	double numberOfContours = 20.0;
+	double interval = getInterval();
 	for (int i = 0; i < numberOfContours; i++) {
-		std::list<Polyline2> edges = marchingSquare(*poly, i * 10);
+		std::list<Polyline2> edges = marchingSquare(*poly, i*interval);
 		std::vector<Polyline2> newPolylines = makePolylineFromEdges(edges);
 		for (auto polyline : newPolylines) {
 			icVector3 redRGB(1.0, 0.0, 0.0);
@@ -125,8 +145,15 @@ void part2B() {
 			icVector3 redHSV = convertRGBToHSV(redRGB);
 			icVector3 blueHSV = convertRGBToHSV(blueRGB);
 
-			double redScalar = i / numberOfContours;
-			double blueScalar = (20 - i) / numberOfContours;
+			double doubleNumberOfContours = 1.0 * numberOfContours;
+			double redScalar = (1.0 * i) / (doubleNumberOfContours);
+			double blueScalar = (doubleNumberOfContours - (1.0 * i)) / doubleNumberOfContours;
+
+			std::cout << "i: " << i << std::endl;
+			std::cout << "numberOfContours: " << numberOfContours << std::endl;
+			std::cout << "redScalar: " << redScalar << std::endl;
+			std::cout << "blueScalar: " << blueScalar << std::endl;
+
 			icVector3 newHSV = (redHSV * redScalar) + (blueHSV * blueScalar);
 			polyline.rgb = convertHSVToRGB(newHSV);
 
@@ -137,21 +164,11 @@ void part2B() {
 }
 
 void part2C() {
-
-	double min = findMin();
-	double max = findMax();
-
-	for (int i = 0; i < poly->nverts; i++) {
-		auto& vertex = poly->vlist[i];
-		double vertexScalar = vertex->scalar;
-		double height = (vertexScalar - min) / (max - min);
-		vertex->z = 10 * height;
-	}
-
+	visualizeHeight();
 	polylines.clear();
-	double numberOfContours = 20.0;
+	double interval = getInterval();
 	for (int i = 0; i < numberOfContours; i++) {
-		std::list<Polyline2> edges = marchingSquare(*poly, i * 10);
+		std::list<Polyline2> edges = marchingSquare(*poly, i * interval);
 		std::vector<Polyline2> newPolylines = makePolylineFromEdges(edges);
 		for (auto polyline : newPolylines) {
 			polyline.rgb = icVector3(1, 0, 0);
@@ -162,20 +179,11 @@ void part2C() {
 }
 
 void part2D() {
-	double min = findMin();
-	double max = findMax();
-
-	for (int i = 0; i < poly->nverts; i++) {
-		auto& vertex = poly->vlist[i];
-		double vertexScalar = vertex->scalar;
-		double height = (vertexScalar - min) / (max - min);
-		vertex->z = 10 * height;
-	}
-
+	visualizeHeight();
 	polylines.clear();
-	double numberOfContours = 20.0;
+	double interval = getInterval();
 	for (int i = 0; i < numberOfContours; i++) {
-		std::list<Polyline2> edges = marchingSquare(*poly, i * 10);
+		std::list<Polyline2> edges = marchingSquare(*poly, i * interval);
 		std::vector<Polyline2> newPolylines = makePolylineFromEdges(edges);
 		for (auto polyline : newPolylines) {
 			icVector3 redRGB(1.0, 0.0, 0.0);
@@ -183,8 +191,9 @@ void part2D() {
 			icVector3 redHSV = convertRGBToHSV(redRGB);
 			icVector3 blueHSV = convertRGBToHSV(blueRGB);
 
-			double redScalar = i / numberOfContours;
-			double blueScalar = (20 - i) / numberOfContours;
+			double doubleNumberOfContours = 1.0 * numberOfContours;
+			double redScalar = (1.0 * i) / (doubleNumberOfContours);
+			double blueScalar = (doubleNumberOfContours - (1.0 * i)) / doubleNumberOfContours;
 			icVector3 newHSV = (redHSV * redScalar) + (blueHSV * blueScalar);
 			polyline.rgb = convertHSVToRGB(newHSV);
 
@@ -237,8 +246,6 @@ std::list<Vertex> getCriticalPoints() {
 
 		double x0 = (x2 * x1y1Scalar - x1 * x2y1Scalar - x2 * x1y2Scalar + x1 * x2y2Scalar) / (x1y1Scalar - x2y1Scalar - x1y2Scalar + x2y2Scalar);
 		double y0 = (y2 * x1y1Scalar - y2 * x2y1Scalar - y1 * x1y2Scalar + y1 * x2y2Scalar) / (x1y1Scalar - x2y1Scalar - x1y2Scalar + x2y2Scalar);
-
-		bool criticalPoint = true;
 
 		if (x0 > x1 && x0 < x2 && y0 > y1 && y0 < y2) {
 			double zAverage = (x2y2->z + x1y2->z + x2y1->z + x2y2->z) / 4;
