@@ -10,7 +10,7 @@
 extern Polyhedron* poly;
 extern std::vector<Polyline2> polylines;
 
-int numberOfContours = 40;
+int numberOfContours = 100;
 enum Relationship { min, max };
 
 double findMin() {
