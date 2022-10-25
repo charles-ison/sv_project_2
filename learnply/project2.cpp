@@ -4,12 +4,14 @@
 #include "GL/freeglut.h"
 #include <vector>
 #include <set>
+#include <map>
 #include "polyline2.h"
 
 extern Polyhedron* poly;
 extern std::vector<Polyline2> polylines;
 
 int numberOfContours = 40;
+enum Relationship { min, max };
 
 double findMin() {
 	double min = poly->vlist[0]->scalar;
@@ -135,7 +137,6 @@ void part2B() {
 	double max = findMax();
 	double interval = (max - min) / numberOfContours;
 	for (int i = 0; i < numberOfContours; i++) {
-		std::cout << "i: " << i << std::endl;
 		std::list<Polyline2> edges = marchingSquare(*poly, min + (i * interval));
 		std::vector<Polyline2> newPolylines = makePolylineFromEdges(edges);
 		for (auto polyline : newPolylines) {
@@ -201,9 +202,8 @@ void part2D() {
 	glutPostOverlayRedisplay();
 }
 
-std::list<Vertex> getCriticalPoints() {
-	std::list<Vertex> criticalPoints;
-	enum Relationship {min, max};
+std::list<CriticalPoint> getCriticalPoints() {
+	std::list<CriticalPoint> criticalPoints;
 
 	for (int i = 0; i < poly->nverts; i++) {
 		std::set<Relationship> relationships;
@@ -221,7 +221,14 @@ std::list<Vertex> getCriticalPoints() {
 			}
 		}
 		if (relationships.size() == 1) {
-			criticalPoints.push_back(*potentialCriticalPoint);
+			Vertex criticalPoint = *potentialCriticalPoint;
+			icVector3 vector = icVector3(criticalPoint.x, criticalPoint.y, criticalPoint.z);
+			if (*relationships.begin() == min) {
+				criticalPoints.push_back(CriticalPoint(vector, 1));
+			}
+			else if (*relationships.begin() == max) {
+				criticalPoints.push_back(CriticalPoint(vector, 2));
+			}
 		}
 	}
 
@@ -247,7 +254,8 @@ std::list<Vertex> getCriticalPoints() {
 
 		if (x0 > x1 && x0 < x2 && y0 > y1 && y0 < y2) {
 			double zAverage = (x2y2->z + x1y2->z + x2y1->z + x2y2->z) / 4;
-			criticalPoints.push_back(Vertex(x0, y0, zAverage));
+			icVector3 vector = icVector3(x0, y0, zAverage);
+			criticalPoints.push_back(CriticalPoint(vector, 0));
 		}
 	}
 	return criticalPoints;
