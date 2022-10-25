@@ -104,6 +104,7 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 * Green is a saddle
 
 ### R2
+* 100 sub intervals
 * R2 One Color:
 
  ![image](r2_one_color.png)
@@ -123,3 +124,24 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 * R2 Critical Points:
 
   ![image](r2_critical_points.png)  
+  
+### R4
+* 100 sub intervals
+
+### R9
+* 50 sub intervals
+
+### R10
+* 50 sub intervals
+
+### R11
+* 50 sub intervals
+
+### R12
+* 50 sub intervals
+
+### R13
+* 50 sub intervals
+
+### R14
+* 50 sub intervals
