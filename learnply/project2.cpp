@@ -224,11 +224,11 @@ std::list<CriticalPoint> getCriticalPoints() {
 			Vertex criticalPoint = *potentialCriticalPoint;
 			icVector3 vector = icVector3(criticalPoint.x, criticalPoint.y, criticalPoint.z);
 			if (*relationships.begin() == min) {
-				icVector3 color = icVector3(0.9, 0.0, 0.0);
+				icVector3 color = icVector3(0.0, 0.0, 0.9);
 				criticalPoints.push_back(CriticalPoint(vector, color, criticalPoint.scalar));
 			}
 			else if (*relationships.begin() == max) {
-				icVector3 color = icVector3(0.0, 0.0, 0.9);
+				icVector3 color = icVector3(0.9, 0.0, 0.0);
 				criticalPoints.push_back(CriticalPoint(vector, color, criticalPoint.scalar));
 			}
 		}
