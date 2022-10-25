@@ -224,10 +224,12 @@ std::list<CriticalPoint> getCriticalPoints() {
 			Vertex criticalPoint = *potentialCriticalPoint;
 			icVector3 vector = icVector3(criticalPoint.x, criticalPoint.y, criticalPoint.z);
 			if (*relationships.begin() == min) {
-				criticalPoints.push_back(CriticalPoint(vector, 1));
+				icVector3 color = icVector3(0.9, 0.0, 0.0);
+				criticalPoints.push_back(CriticalPoint(vector, color, criticalPoint.scalar));
 			}
 			else if (*relationships.begin() == max) {
-				criticalPoints.push_back(CriticalPoint(vector, 2));
+				icVector3 color = icVector3(0.0, 0.0, 0.9);
+				criticalPoints.push_back(CriticalPoint(vector, color, criticalPoint.scalar));
 			}
 		}
 	}
@@ -254,13 +256,23 @@ std::list<CriticalPoint> getCriticalPoints() {
 
 		if (x0 > x1 && x0 < x2 && y0 > y1 && y0 < y2) {
 			double zAverage = (x2y2->z + x1y2->z + x2y1->z + x2y2->z) / 4;
+			double scalarAverage = (x1y1Scalar + x1y2Scalar + x2y1Scalar + x2y2Scalar) / 4;
 			icVector3 vector = icVector3(x0, y0, zAverage);
-			criticalPoints.push_back(CriticalPoint(vector, 0));
+			icVector3 color = icVector3(0.0, 0.9, 0.0);
+			criticalPoints.push_back(CriticalPoint(vector, color, scalarAverage));
 		}
 	}
 	return criticalPoints;
 }
 
-void part3B() {
-	
+void part3B(std::list<CriticalPoint> criticalPoints) {
+	polylines.clear();
+	for (CriticalPoint criticalPoint : criticalPoints) {
+		std::list<Polyline2> edges = marchingSquare(*poly, criticalPoint.scalar);
+		std::vector<Polyline2> newPolylines = makePolylineFromEdges(edges);
+		for (auto polyline : newPolylines) {
+			polyline.rgb = criticalPoint.color;
+			polylines.push_back(polyline);
+		}
+	}
 }

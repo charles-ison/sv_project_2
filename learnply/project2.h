@@ -6,17 +6,19 @@ void part2A();
 void part2B();
 void part2C();
 void part2D();
-void part3B();
 
 class CriticalPoint {
 public:
 	icVector3 vector;
-	int significance;
+	icVector3 color;
+	double scalar;
 public:
-	CriticalPoint(icVector3 newVector, int newSignificance) {
+	CriticalPoint(icVector3 newVector, icVector3 newColor, double newScalar) {
+		color = newColor;
 		vector = newVector;
-		significance = newSignificance;
+		scalar = newScalar;
 	}
 };
 
 std::list<CriticalPoint> getCriticalPoints();
+void part3B(std::list<CriticalPoint> criticalPoints);

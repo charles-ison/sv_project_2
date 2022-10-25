@@ -883,6 +883,14 @@ void drawBasicSolidPoly() {
 	}
 }
 
+void drawCriticalPoints(std::list<CriticalPoint> criticalPoints) {
+	for (CriticalPoint criticalPoint : criticalPoints) {
+		icVector3 vector = criticalPoint.vector;
+		icVector3 color = criticalPoint.color;
+		drawDot(vector.x, vector.y, vector.z, 0.15, color.x, color.y, color.z);
+	}
+}
+
 void display_polyhedron(Polyhedron* poly)
 {
 	unsigned int i, j;
@@ -1009,21 +1017,7 @@ void display_polyhedron(Polyhedron* poly)
 		drawBasicSolidPoly();
 
 		std::list<CriticalPoint> criticalPoints = getCriticalPoints();
-		for (CriticalPoint criticalPoint : criticalPoints) {
-			icVector3 vector = criticalPoint.vector;
-			// Saddle
-			if (criticalPoint.significance == 0) {
-				drawDot(vector.x, vector.y, vector.z, 0.15, 0.0, 0.90, 0.0);
-			}
-			// Min
-			else if (criticalPoint.significance == 1) {
-				drawDot(vector.x, vector.y, vector.z, 0.15, 0.90, 0.00, 0.0);
-			}
-			// Max
-			else if (criticalPoint.significance == 2) {
-				drawDot(vector.x, vector.y, vector.z, 0.15, 0.0, 0.00, 0.90);
-			}
-		}
+		drawCriticalPoints(criticalPoints);
 		glutPostRedisplay();
 
 		break;
@@ -1032,7 +1026,11 @@ void display_polyhedron(Polyhedron* poly)
 
 	case 11:
 	{
-		
+		drawBasicSolidPoly();
+		std::list<CriticalPoint> criticalPoints = getCriticalPoints();
+		drawCriticalPoints(criticalPoints);
+		part3B(criticalPoints);
+		glutPostRedisplay();
 	}
 	break;
 
