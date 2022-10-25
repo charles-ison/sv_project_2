@@ -145,7 +145,7 @@ void part2B() {
 			icVector3 redHSV = convertRGBToHSV(redRGB);
 			icVector3 blueHSV = convertRGBToHSV(blueRGB);
 
-			double doubleNumberOfContours = 1.0 * numberOfContours;
+			double doubleNumberOfContours = 1.0 * (numberOfContours - 1);
 			double redScalar = (1.0 * i) / (doubleNumberOfContours);
 			double blueScalar = (doubleNumberOfContours - (1.0 * i)) / doubleNumberOfContours;
 
