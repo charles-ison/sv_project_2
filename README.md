@@ -98,3 +98,28 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 * To run part 3.a use the 'e' button
 * To run part 3.b use the 'f' button
 
+### Critical Point Key
+* Red is a minimum
+* Blue is a maximum
+* Green is a saddle
+
+### R2
+* R2 One Color:
+
+ ![image](r2_one_color.png)
+
+* R2 Multi-Color:
+
+  ![image](r2_multi_color.png)
+
+* R2 Height + One Color:
+
+  ![image](r2_height_one_color.png)  
+
+* R2 Height + Multi-Color:
+
+  ![image](r2_height_multi_color.png) 
+  
+* R2 Critical Points:
+
+  ![image](r2_critical_points.png)  
