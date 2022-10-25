@@ -89,3 +89,12 @@ $$
 
 $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{13}}, \frac{-1}{\sqrt{13}}) \texttt{ is a saddle.}$$
 
+### Running The Program
+* Project was compiled and tested using VisualStudio on the machines in the Kelly computer lab  
+* To run part 2.a. use the 'a' button  
+* To run part 2.b. use the 'b' button
+* To run part 2.c. use the 'c' button
+* To run part 2.d use the 'd' button
+* To run part 3.a use the 'e' button
+* To run part 3.b use the 'f' button
+
