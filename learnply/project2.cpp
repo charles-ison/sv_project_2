@@ -11,7 +11,6 @@ extern Polyhedron* poly;
 extern std::vector<Polyline2> polylines;
 
 int numberOfContours = 100;
-enum Relationship { min, max };
 
 double findMin() {
 	double min = poly->vlist[0]->scalar;
@@ -228,11 +227,11 @@ std::list<CriticalPoint> getCriticalPoints() {
 			icVector3 vector = icVector3(criticalPoint.x, criticalPoint.y, criticalPoint.z);
 			if (*relationships.begin() == min) {
 				icVector3 color = icVector3(0.0, 0.0, 0.9);
-				criticalPoints.push_back(CriticalPoint(vector, color, criticalPoint.scalar));
+				criticalPoints.push_back(CriticalPoint(vector, color, criticalPoint.scalar, min));
 			}
 			else if (*relationships.begin() == max) {
 				icVector3 color = icVector3(0.9, 0.0, 0.0);
-				criticalPoints.push_back(CriticalPoint(vector, color, criticalPoint.scalar));
+				criticalPoints.push_back(CriticalPoint(vector, color, criticalPoint.scalar, max));
 			}
 		}
 	}
@@ -260,9 +259,10 @@ std::list<CriticalPoint> getCriticalPoints() {
 		if (x0 > x1 && x0 < x2 && y0 > y1 && y0 < y2) {
 			double zAverage = (x2y2->z + x1y2->z + x2y1->z + x2y2->z) / 4;
 			double scalarAverage = (x1y1Scalar + x1y2Scalar + x2y1Scalar + x2y2Scalar) / 4;
+			//double minScalar = x1y1Scalar + x1y2Scalar + x2y1Scalar + x2y2Scalar / 4;
 			icVector3 vector = icVector3(x0, y0, zAverage);
 			icVector3 color = icVector3(0.0, 0.9, 0.0);
-			criticalPoints.push_back(CriticalPoint(vector, color, scalarAverage));
+			criticalPoints.push_back(CriticalPoint(vector, color, scalarAverage, saddle));
 		}
 	}
 	return criticalPoints;
@@ -271,6 +271,9 @@ std::list<CriticalPoint> getCriticalPoints() {
 void part3B(std::list<CriticalPoint> criticalPoints) {
 	polylines.clear();
 	for (CriticalPoint criticalPoint : criticalPoints) {
+		if (criticalPoint.relationship != saddle) {
+			continue;
+		}
 		std::list<Polyline2> edges = marchingSquare(*poly, criticalPoint.scalar);
 		std::vector<Polyline2> newPolylines = makePolylineFromEdges(edges);
 		for (auto polyline : newPolylines) {
