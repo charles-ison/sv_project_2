@@ -227,11 +227,11 @@ std::list<CriticalPoint> getCriticalPoints() {
 			icVector3 vector = icVector3(criticalPoint.x, criticalPoint.y, criticalPoint.z);
 			if (*relationships.begin() == min) {
 				icVector3 color = icVector3(0.0, 0.0, 0.9);
-				criticalPoints.push_back(CriticalPoint(vector, color, criticalPoint.scalar, min));
+				criticalPoints.push_back(CriticalPoint(vector, color, criticalPoint.scalar, criticalPoint.scalar, criticalPoint.scalar, min));
 			}
 			else if (*relationships.begin() == max) {
 				icVector3 color = icVector3(0.9, 0.0, 0.0);
-				criticalPoints.push_back(CriticalPoint(vector, color, criticalPoint.scalar, max));
+				criticalPoints.push_back(CriticalPoint(vector, color, criticalPoint.scalar, criticalPoint.scalar, criticalPoint.scalar, max));
 			}
 		}
 	}
@@ -259,13 +259,23 @@ std::list<CriticalPoint> getCriticalPoints() {
 		if (x0 > x1 && x0 < x2 && y0 > y1 && y0 < y2) {
 			double zAverage = (x2y2->z + x1y2->z + x2y1->z + x2y2->z) / 4;
 			double scalarAverage = (x1y1Scalar + x1y2Scalar + x2y1Scalar + x2y2Scalar) / 4;
-			//double minScalar = x1y1Scalar + x1y2Scalar + x2y1Scalar + x2y2Scalar / 4;
+			double maxScalar = std::max(std::max(std::max(x1y1Scalar, x1y2Scalar), x2y1Scalar), x2y2Scalar);
+			double minScalar = std::min(std::min(std::min(x1y1Scalar, x1y2Scalar), x2y1Scalar), x2y2Scalar);
 			icVector3 vector = icVector3(x0, y0, zAverage);
 			icVector3 color = icVector3(0.0, 0.9, 0.0);
-			criticalPoints.push_back(CriticalPoint(vector, color, scalarAverage, saddle));
+			criticalPoints.push_back(CriticalPoint(vector, color, scalarAverage, minScalar, maxScalar, saddle));
 		}
 	}
 	return criticalPoints;
+}
+
+void addCriticalPointContours(double threshold, icVector3 color) {
+	std::list<Polyline2> edges = marchingSquare(*poly, threshold);
+	std::vector<Polyline2> newPolylines = makePolylineFromEdges(edges);
+	for (auto polyline : newPolylines) {
+		polyline.rgb = color;
+		polylines.push_back(polyline);
+	}
 }
 
 void part3B(std::list<CriticalPoint> criticalPoints) {
@@ -274,11 +284,8 @@ void part3B(std::list<CriticalPoint> criticalPoints) {
 		if (criticalPoint.relationship != saddle) {
 			continue;
 		}
-		std::list<Polyline2> edges = marchingSquare(*poly, criticalPoint.scalar);
-		std::vector<Polyline2> newPolylines = makePolylineFromEdges(edges);
-		for (auto polyline : newPolylines) {
-			polyline.rgb = criticalPoint.color;
-			polylines.push_back(polyline);
+		for (double threshold = criticalPoint.minScalar; threshold <= max; threshold++) {
+			addCriticalPointContours(threshold, criticalPoint.color);
 		}
 	}
 }
