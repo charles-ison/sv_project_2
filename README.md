@@ -104,6 +104,7 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 * Green is a saddle
 
 ### R2
+* 100 sub intervals
 * R2 One Color:
 
  ![image](r2_one_color.png)
@@ -123,3 +124,157 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 * R2 Critical Points:
 
   ![image](r2_critical_points.png)  
+  
+### R4
+* 100 sub intervals
+* R4 One Color:
+
+ ![image](r4_one_color.png)
+
+* R4 Multi-Color:
+
+  ![image](r4_multi_color.png)
+
+* R4 Height + One Color:
+
+  ![image](r4_height_one_color.png)  
+
+* R4 Height + Multi-Color:
+
+  ![image](r4_height_multi_color.png) 
+  
+* R4 Critical Points:
+
+  ![image](r4_critical_points.png)  
+
+### R9
+* 50 sub intervals
+* R9 One Color:
+
+ ![image](r9_one_color.png)
+
+* R9 Multi-Color:
+
+  ![image](r9_multi_color.png)
+
+* R9 Height + One Color:
+
+  ![image](r9_height_one_color.png)  
+
+* R9 Height + Multi-Color:
+
+  ![image](r9_height_multi_color.png) 
+  
+* R9 Critical Points:
+
+  ![image](r9_critical_points.png)  
+
+### R10
+* 50 sub intervals
+* R10 One Color:
+
+ ![image](r10_one_color.png)
+
+* R10 Multi-Color:
+
+  ![image](r10_multi_color.png)
+
+* R10 Height + One Color:
+
+  ![image](r10_height_one_color.png)  
+
+* R10 Height + Multi-Color:
+
+  ![image](r10_height_multi_color.png) 
+  
+* R10 Critical Points:
+
+  ![image](r10_critical_points.png)  
+
+### R11
+* 50 sub intervals
+* R11 One Color:
+
+ ![image](r11_one_color.png)
+
+* R11 Multi-Color:
+
+  ![image](r11_multi_color.png)
+
+* R11 Height + One Color:
+
+  ![image](r11_height_one_color.png)  
+
+* R11 Height + Multi-Color:
+
+  ![image](r11_height_multi_color.png) 
+  
+* R11 Critical Points:
+
+  ![image](r11_critical_points.png)  
+
+### R12
+* 50 sub intervals
+* R12 One Color:
+
+ ![image](r12_one_color.png)
+
+* R12 Multi-Color:
+
+  ![image](r12_multi_color.png)
+
+* R12 Height + One Color:
+
+  ![image](r12_height_one_color.png)  
+
+* R12 Height + Multi-Color:
+
+  ![image](r12_height_multi_color.png) 
+  
+* R12 Critical Points:
+
+  ![image](r12_critical_points.png) 
+
+### R13
+* 50 sub intervals
+* R13 One Color:
+
+ ![image](r13_one_color.png)
+
+* R13 Multi-Color:
+
+  ![image](r13_multi_color.png)
+
+* R13 Height + One Color:
+
+  ![image](r13_height_one_color.png)  
+
+* R13 Height + Multi-Color:
+
+  ![image](r13_height_multi_color.png) 
+  
+* R13 Critical Points:
+
+  ![image](r13_critical_points.png) 
+
+### R14
+* 50 sub intervals
+* R14 One Color:
+
+ ![image](r14_one_color.png)
+
+* R14 Multi-Color:
+
+  ![image](r14_multi_color.png)
+
+* R14 Height + One Color:
+
+  ![image](r14_height_one_color.png)  
+
+* R14 Height + Multi-Color:
+
+  ![image](r14_height_multi_color.png) 
+  
+* R14 Critical Points:
+
+  ![image](r14_critical_points.png) 
