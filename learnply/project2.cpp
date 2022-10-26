@@ -208,6 +208,9 @@ std::list<CriticalPoint> getCriticalPoints() {
 	for (int i = 0; i < poly->nverts; i++) {
 		std::set<Relationship> relationships;
 		Vertex* potentialCriticalPoint = poly->vlist[i];
+		if (potentialCriticalPoint->nquads != 4) {
+			continue;
+		}
 		for (int j = 0; j < potentialCriticalPoint->nquads; j++) {
 			Quad* quad = potentialCriticalPoint->quads[j];
 			for (int k = 0; k < 4; k++) {
