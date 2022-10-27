@@ -2,6 +2,7 @@
 Scientific Visualizations  
 Charles Ison  
 10/20/2022
+GitHub Link (for ReadMe markdown formatting): https://github.com/charles-ison/sv_project_2
 
 1. a.) 
 
@@ -127,6 +128,10 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 
   ![image](r2_critical_points.png)  
   
+* R2 Critical Points:
+
+  ![image](r2_critical_points_and_contour_lines.png)   
+  
 ### R4
 * 100 sub intervals
 * R4 One Color:
@@ -149,6 +154,10 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 
   ![image](r4_critical_points.png)  
 
+* R4 Critical Points:
+
+  ![image](r4_critical_points_and_contour_lines.png)
+
 ### R9
 * 50 sub intervals
 * R9 One Color:
@@ -170,6 +179,10 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 * R9 Critical Points:
 
   ![image](r9_critical_points.png)  
+  
+* R9 Critical Points:
+
+  ![image](r9_critical_points_and_contour_lines.png)
 
 ### R10
 * 50 sub intervals
@@ -193,6 +206,10 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 
   ![image](r10_critical_points.png)  
 
+* R10 Critical Points:
+
+  ![image](r10_critical_points_and_contour_lines.png)
+
 ### R11
 * 50 sub intervals
 * R11 One Color:
@@ -214,6 +231,10 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 * R11 Critical Points:
 
   ![image](r11_critical_points.png)  
+  
+* R11 Critical Points:
+
+  ![image](r11_critical_points_and_contour_lines.png)
 
 ### R12
 * 50 sub intervals
@@ -236,6 +257,10 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 * R12 Critical Points:
 
   ![image](r12_critical_points.png) 
+  
+* R12 Critical Points:
+
+  ![image](r12_critical_points_and_contour_lines.png)
 
 ### R13
 * 50 sub intervals
@@ -258,6 +283,10 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 * R13 Critical Points:
 
   ![image](r13_critical_points.png) 
+  
+* R13 Critical Points:
+
+  ![image](r13_critical_points_and_contour_lines.png)
 
 ### R14
 * 50 sub intervals
@@ -280,3 +309,7 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 * R14 Critical Points:
 
   ![image](r14_critical_points.png) 
+  
+* R14 Critical Points:
+
+  ![image](r14_critical_points_and_contour_lines.png)
