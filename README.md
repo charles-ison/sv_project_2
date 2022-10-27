@@ -91,12 +91,12 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 
 ### Running The Program
 * Project was compiled and tested using VisualStudio on the machines in the Kelly computer lab  
-* To run part 2.a. use the 'a' button  
-* To run part 2.b. use the 'b' button
-* To run part 2.c. use the 'c' button
-* To run part 2.d use the 'd' button
-* To run part 3.a use the 'e' button
-* To run part 3.b use the 'f' button
+* To run part 2.a. use the 'a' button (draws 2D contours for one color)
+* To run part 2.b. use the 'b' button (draws 2D contours for multiple colors)
+* To run part 2.c. use the 'c' button (draws 3D contours for one color)
+* To run part 2.d use the 'd' button (draws 3D contours for multiple colors)
+* To run part 3.a use the 'e' button (draws critical points for 2D and 3D contours)
+* To run part 3.b use the 'f' button (draws contour lines containing a critical point in either 2D or 3D depending one what the shape already is)
 * To flatten the polyhedron use 'g' button
 * To clear all polylines use the 'h' button
 
