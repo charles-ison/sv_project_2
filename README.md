@@ -101,7 +101,22 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 * To flatten the polyhedron use 'g' button
 * To clear all polylines use the 'h' button
 
-2.a.) Comparing contour lines vs the project 1 methods of color and height, I feel very similar info is conveyed with the two approaches, but with some suble differences. First, I feel the the contours can review more subtle shape info and reveal with greater accuracy where exactly the key features like a valley exist. At the same time, I feel the contours are not as immediately understandable as the height visualizations from project 1 and improve immensely when combined with height changes.
+### Question Answers
+2.a.) Comparing contour lines vs the project 1 methods of color and height, I feel very similar info is conveyed with the two approaches, but with some suble differences. First, I feel the the contours can review more subtle shape info and reveal with greater accuracy where exactly the key features like a valley exist. This is evident when looking at the two color version of R2 vs the one color contour version of R2 included at the bottom of the file. At the same time, I feel the contours are not as immediately understandable as the color and height visualizations combined from project 1 and improve immensely when height is added in later parts of this project.
+
+![image](r2_bicolor.png)
+
+2.b.) I think this improves upon 2a, as it gives two mediums that are conveying the same information. I feel this makes the visualization easier to comprehend and more robust than just the one color version. Both of these can be compared below for any of the PLY files.
+
+2.c.) Adding the height to the single color contours makes the vizualization more intuitive as they both convey the same information, but through two different techniques that complement each other.
+
+2.d.) I believe adding the height on top of the multi colors and contours further improves the visualization. It would be possible adding all of these elements to convey the same information could risk overwhelming the viewer, but this in this case I feel they work well together and complement each other's weaknesses.
+
+2.e.) 
+
+3.a.)
+
+3.b.)
 
 ### Critical Point Key
 * Blue is a minimum
