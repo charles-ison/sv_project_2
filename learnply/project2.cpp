@@ -7,6 +7,7 @@
 #include <map>
 #include "polyline2.h"
 
+#define EPSILON 0.0001
 extern Polyhedron* poly;
 extern std::vector<Polyline2> polylines;
 
@@ -110,7 +111,7 @@ void visualizeHeight() {
 		auto& vertex = poly->vlist[i];
 		double vertexScalar = vertex->scalar;
 		double height = (vertexScalar - min) / (max - min);
-		vertex->z = 10 * height;
+		vertex->z = 20 * height;
 	}
 }
 
@@ -227,11 +228,11 @@ std::list<CriticalPoint> getCriticalPoints() {
 			icVector3 vector = icVector3(criticalPoint.x, criticalPoint.y, criticalPoint.z);
 			if (*relationships.begin() == min) {
 				icVector3 color = icVector3(0.0, 0.0, 0.9);
-				criticalPoints.push_back(CriticalPoint(vector, color, criticalPoint.scalar, criticalPoint.scalar, criticalPoint.scalar, min));
+				criticalPoints.push_back(CriticalPoint(vector, color, criticalPoint.scalar, min));
 			}
 			else if (*relationships.begin() == max) {
 				icVector3 color = icVector3(0.9, 0.0, 0.0);
-				criticalPoints.push_back(CriticalPoint(vector, color, criticalPoint.scalar, criticalPoint.scalar, criticalPoint.scalar, max));
+				criticalPoints.push_back(CriticalPoint(vector, color, criticalPoint.scalar, max));
 			}
 		}
 	}
@@ -256,14 +257,17 @@ std::list<CriticalPoint> getCriticalPoints() {
 		double x0 = (x2 * x1y1Scalar - x1 * x2y1Scalar - x2 * x1y2Scalar + x1 * x2y2Scalar) / (x1y1Scalar - x2y1Scalar - x1y2Scalar + x2y2Scalar);
 		double y0 = (y2 * x1y1Scalar - y2 * x2y1Scalar - y1 * x1y2Scalar + y1 * x2y2Scalar) / (x1y1Scalar - x2y1Scalar - x1y2Scalar + x2y2Scalar);
 
-		if (x0 > x1 && x0 < x2 && y0 > y1 && y0 < y2) {
+		if (x0-EPSILON > x1 && x0+EPSILON < x2 && y0-EPSILON > y1 && y0+EPSILON < y2) {
 			double zAverage = (x2y2->z + x1y2->z + x2y1->z + x2y2->z) / 4;
-			double scalarAverage = (x1y1Scalar + x1y2Scalar + x2y1Scalar + x2y2Scalar) / 4;
-			double maxScalar = std::max(std::max(std::max(x1y1Scalar, x1y2Scalar), x2y1Scalar), x2y2Scalar);
-			double minScalar = std::min(std::min(std::min(x1y1Scalar, x1y2Scalar), x2y1Scalar), x2y2Scalar);
+			double linearlyInterpolatedScalar =
+				(((x2 - x0) / (x2 - x1)) * ((y2 - y0) / (y2 - y1)) * x1y1Scalar) +
+				(((x0 - x1) / (x2 - x1)) * ((y2 - y0) / (y2 - y1)) * x2y1Scalar) +
+				(((x2 - x0) / (x2 - x1)) * ((y0 - y1) / (y2 - y1)) * x1y2Scalar) +
+				(((x0 - x1) / (x2 - x1)) * ((y0 - y1) / (y2 - y1)) * x2y2Scalar);
+
 			icVector3 vector = icVector3(x0, y0, zAverage);
 			icVector3 color = icVector3(0.0, 0.9, 0.0);
-			criticalPoints.push_back(CriticalPoint(vector, color, scalarAverage, minScalar, maxScalar, saddle));
+			criticalPoints.push_back(CriticalPoint(vector, color, linearlyInterpolatedScalar, saddle));
 		}
 	}
 	return criticalPoints;
@@ -281,11 +285,8 @@ void addCriticalPointContours(double threshold, icVector3 color) {
 void part3B(std::list<CriticalPoint> criticalPoints) {
 	polylines.clear();
 	for (CriticalPoint criticalPoint : criticalPoints) {
-		if (criticalPoint.relationship != saddle) {
-			continue;
-		}
-		for (double threshold = criticalPoint.minScalar; threshold <= max; threshold++) {
-			addCriticalPointContours(threshold, criticalPoint.color);
+		if (criticalPoint.relationship == saddle) {
+			addCriticalPointContours(criticalPoint.scalar, criticalPoint.color);
 		}
 	}
 }

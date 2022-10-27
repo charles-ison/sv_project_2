@@ -14,17 +14,13 @@ public:
 	icVector3 vector;
 	icVector3 color;
 	double scalar;
-	double minScalar;
-	double maxScalar;
 	Relationship relationship;
 public:
-	CriticalPoint(icVector3 newVector, icVector3 newColor, double newScalar, double newMinScalar, double newMaxScalar, Relationship newRelationship) {
+	CriticalPoint(icVector3 newVector, icVector3 newColor, double newScalar, Relationship newRelationship) {
 		color = newColor;
 		vector = newVector;
 		scalar = newScalar;
 		relationship = newRelationship;
-		minScalar = newMinScalar;
-		maxScalar = newMaxScalar;
 	}
 };
 
