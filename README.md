@@ -97,11 +97,13 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 * To run part 2.d use the 'd' button
 * To run part 3.a use the 'e' button
 * To run part 3.b use the 'f' button
+* To flatten the polyhedron use 'g' button
+* To clear all polylines use the 'h' button
 
 ### Critical Point Key
-* Red is a minimum
-* Blue is a maximum
-* Green is a saddle
+* Blue is a minimum
+* Red is a maximum
+* Grey is a saddle
 
 ### R2
 * 100 sub intervals
