@@ -7,7 +7,7 @@
 #include <map>
 #include "polyline2.h"
 
-#define EPSILON 0.0001
+#define EPSILON 0.015
 extern Polyhedron* poly;
 extern std::vector<Polyline2> polylines;
 
@@ -111,7 +111,15 @@ void visualizeHeight() {
 		auto& vertex = poly->vlist[i];
 		double vertexScalar = vertex->scalar;
 		double height = (vertexScalar - min) / (max - min);
-		vertex->z = 20 * height;
+		vertex->z = 15 * height;
+	}
+}
+
+//TODO: this is a hack and should be removed in favor of constructing a polyline from vertexes in future iterations
+void flattenPolyhedron() {
+	for (int i = 0; i < poly->nverts; i++) {
+		auto& vertex = poly->vlist[i];
+		vertex->z = 0;
 	}
 }
 
@@ -159,6 +167,7 @@ void part2B() {
 }
 
 void part2C() {
+	polylines.clear();
 	visualizeHeight();
 	polylines.clear();
 	double min = findMin();
@@ -176,6 +185,7 @@ void part2C() {
 }
 
 void part2D() {
+	polylines.clear();
 	visualizeHeight();
 	polylines.clear();
 	double min = findMin();
@@ -266,7 +276,7 @@ std::list<CriticalPoint> getCriticalPoints() {
 				(((x0 - x1) / (x2 - x1)) * ((y0 - y1) / (y2 - y1)) * x2y2Scalar);
 
 			icVector3 vector = icVector3(x0, y0, zAverage);
-			icVector3 color = icVector3(0.0, 0.9, 0.0);
+			icVector3 color = icVector3(0.70, 0.70, 0.70);
 			criticalPoints.push_back(CriticalPoint(vector, color, linearlyInterpolatedScalar, saddle));
 		}
 	}
@@ -283,7 +293,6 @@ void addCriticalPointContours(double threshold, icVector3 color) {
 }
 
 void part3B(std::list<CriticalPoint> criticalPoints) {
-	polylines.clear();
 	for (CriticalPoint criticalPoint : criticalPoints) {
 		if (criticalPoint.relationship == saddle) {
 			addCriticalPointContours(criticalPoint.scalar, criticalPoint.color);

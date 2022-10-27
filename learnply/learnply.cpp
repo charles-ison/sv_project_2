@@ -92,7 +92,7 @@ Main program.
 int main(int argc, char* argv[])
 {
 	/*load mesh from ply file*/
-	FILE* this_file = fopen("../data/scalar_data/r12.ply", "r");
+	FILE* this_file = fopen("../data/scalar_data/r14.ply", "r");
 	poly = new Polyhedron(this_file);
 	fclose(this_file);
 	
@@ -492,6 +492,16 @@ void keyboard(unsigned char key, int x, int y) {
 
 	case 'f':
 		display_mode = 11;
+		glutPostRedisplay();
+		break;
+
+	case 'g':
+		display_mode = 12;
+		glutPostRedisplay();
+		break;
+
+	case 'h':
+		display_mode = 13;
 		glutPostRedisplay();
 		break;
 
@@ -1030,6 +1040,22 @@ void display_polyhedron(Polyhedron* poly)
 		std::list<CriticalPoint> criticalPoints = getCriticalPoints();
 		drawCriticalPoints(criticalPoints);
 		part3B(criticalPoints);
+		glutPostRedisplay();
+	}
+	break;
+
+	case 12:
+	{
+		drawBasicSolidPoly();
+		flattenPolyhedron();
+		glutPostRedisplay();
+	}
+	break;
+
+	case 13:
+	{
+		drawBasicSolidPoly();
+		polylines.clear();
 		glutPostRedisplay();
 	}
 	break;

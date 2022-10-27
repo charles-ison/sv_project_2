@@ -26,3 +26,4 @@ public:
 
 std::list<CriticalPoint> getCriticalPoints();
 void part3B(std::list<CriticalPoint> criticalPoints);
+void flattenPolyhedron();
