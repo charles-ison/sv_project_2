@@ -101,9 +101,9 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 * To clear all polylines use the 'h' button
 
 ### Critical Point Key
-* Red is a minimum
-* Blue is a maximum
-* Green is a saddle
+* Blue is a minimum
+* Red is a maximum
+* Grey is a saddle
 
 ### R2
 * 100 sub intervals
