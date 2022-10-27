@@ -101,6 +101,8 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 * To flatten the polyhedron use 'g' button
 * To clear all polylines use the 'h' button
 
+2.a.) Comparing contour lines vs the project 1 methods of color and height, I feel very similar info is conveyed with the two approaches, but with some suble differences. First, I feel the the contours can review more subtle shape info and reveal with greater accuracy where exactly the key features like a valley exist. At the same time, I feel the contours are not as immediately understandable as the height visualizations from project 1 and improve immensely when combined with height changes.
+
 ### Critical Point Key
 * Blue is a minimum
 * Red is a maximum
@@ -128,7 +130,7 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 
   ![image](r2_critical_points.png)  
   
-* R2 Critical Points:
+* R2 Contour Lines Containing Critical Points:
 
   ![image](r2_critical_points_and_contour_lines.png)   
   
@@ -154,7 +156,7 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 
   ![image](r4_critical_points.png)  
 
-* R4 Critical Points:
+* R4 Contour Lines Containing Critical Points:
 
   ![image](r4_critical_points_and_contour_lines.png)
 
@@ -180,7 +182,7 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 
   ![image](r9_critical_points.png)  
   
-* R9 Critical Points:
+* R9 Contour Lines Containing Critical Points:
 
   ![image](r9_critical_points_and_contour_lines.png)
 
@@ -206,7 +208,7 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 
   ![image](r10_critical_points.png)  
 
-* R10 Critical Points:
+* R10 Contour Lines Containing Critical Points:
 
   ![image](r10_critical_points_and_contour_lines.png)
 
@@ -232,7 +234,7 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 
   ![image](r11_critical_points.png)  
   
-* R11 Critical Points:
+* R11 Contour Lines Containing Critical Points:
 
   ![image](r11_critical_points_and_contour_lines.png)
 
@@ -258,7 +260,7 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 
   ![image](r12_critical_points.png) 
   
-* R12 Critical Points:
+* R12 Contour Lines Containing Critical Points:
 
   ![image](r12_critical_points_and_contour_lines.png)
 
@@ -284,7 +286,7 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 
   ![image](r13_critical_points.png) 
   
-* R13 Critical Points:
+* R13 Contour Lines Containing Critical Points:
 
   ![image](r13_critical_points_and_contour_lines.png)
 
@@ -310,6 +312,6 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 
   ![image](r14_critical_points.png) 
   
-* R14 Critical Points:
+* R14 Contour Lines Containing Critical Points:
 
   ![image](r14_critical_points_and_contour_lines.png)
