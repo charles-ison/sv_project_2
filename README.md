@@ -114,9 +114,9 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 
 2.e.) 
 
-3.a.)
+3.a.) One point on my code for extracting critical points, I found the saddle points found to be extremely sensitive to the size of the threshold used when checking if the point found through taking the partial derivative of the linear interpolation forumla was within a quad. I tried values raning from 0.001 to 0.2 and found I could get different number of saddle points at many different values in this range. The minimum and maximums were much more robust.
 
-3.b.)
+3.b.) I found the contour lines containing the critical points to be interesting to look at, but I am not sure if they provided extra value in terms of sharing new information. There are no contour lines for the minimums and maximums, and for the saddle lines I was not able to draw the exact contour lines at the scale of the critical point. This is because we do not know the scalar value of the true critical point, but only its linear interpolation which could be a bit off. The location of the saddle point contour lines could already be inferred using the normal contour lines as well.
 
 ### Critical Point Key
 * Blue is a minimum
