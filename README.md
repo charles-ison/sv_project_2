@@ -101,6 +101,11 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 * To flatten the polyhedron use 'g' button
 * To clear all polylines use the 'h' button
 
+### Critical Point Key
+* Blue is a minimum
+* Red is a maximum
+* Grey is a saddle
+
 ### Question Answers
 2.a.) Comparing contour lines vs the project 1 methods of color and height, I feel very similar info is conveyed with the two approaches, but with some suble differences. First, I feel the the contours can review more subtle shape info and reveal with greater accuracy where exactly the key features like a valley exist. This is evident when looking at the two color version of R2 vs the one color contour version of R2 included at the bottom of the file. At the same time, I feel the contours are not as immediately understandable as the color and height visualizations combined from project 1 and improve immensely when height is added in later parts of this project.
 
@@ -108,20 +113,17 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 
 2.b.) I think this improves upon 2a, as it gives two mediums that are conveying the same information. I feel this makes the visualization easier to comprehend and more robust than just the one color version. Both of these can be compared below for any of the PLY files.
 
-2.c.) Adding the height to the single color contours makes the vizualization more intuitive as they both convey the same information, but through two different techniques that complement each other.
+2.c.) Adding the height to the single color contours makes the vizualization more intuitive as they both convey the same information, but through two different techniques that complement each other. It is also possible to view the heights in two different ways, the first is to keep the polyhedron flat, and the second is to change both the polyhedron's height and the contour's heights. I've added an example of the flattened polyhedron below, and used the format where both have their heights changed for all my PLY file screenshots. I think both look good, perhaps having the flattened polyhedron provides a nice base, whereas the shaped polyhedron gives supplementary info about the shaped contours.
+
+  ![image](r14_height_multi_color_flattened_base.png)
 
 2.d.) I believe adding the height on top of the multi colors and contours further improves the visualization. It would be possible adding all of these elements to convey the same information could risk overwhelming the viewer, but this in this case I feel they work well together and complement each other's weaknesses.
 
-2.e.) 
+2.e.) Between projects 1 and 2, we have worked on what I would classify as 4 different methods that can be used to visualize scalar fields. It is then possible to mix and match each of these different techniques for different combinations with unique pros and cons.
 
 3.a.) One point on my code for extracting critical points, I found the saddle points found to be extremely sensitive to the size of the threshold used when checking if the point found through taking the partial derivative of the linear interpolation forumla was within a quad. I tried values raning from 0.001 to 0.2 and found I could get different number of saddle points at many different values in this range. The minimum and maximums were much more robust.
 
 3.b.) I found the contour lines containing the critical points to be interesting to look at, but I am not sure if they provided extra value in terms of sharing new information. There are no contour lines for the minimums and maximums, and for the saddle lines I was not able to draw the exact contour lines at the scale of the critical point. This is because we do not know the scalar value of the true critical point, but only its linear interpolation which could be a bit off. The location of the saddle point contour lines could already be inferred using the normal contour lines as well.
-
-### Critical Point Key
-* Blue is a minimum
-* Red is a maximum
-* Grey is a saddle
 
 ### R2
 * 100 sub intervals
