@@ -7,7 +7,7 @@
 #include <map>
 #include "polyline2.h"
 
-#define EPSILON 0.015
+#define EPSILON 0.01
 extern Polyhedron* poly;
 extern std::vector<Polyline2> polylines;
 

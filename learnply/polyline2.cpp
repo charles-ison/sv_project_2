@@ -3,7 +3,7 @@
 #include "GL/glew.h"
 #include "iostream"
 #include <vector>
-#define EPSILON 1.0e-10
+#define EPSILON 1.0e-100
 
 bool Polyline2::isNeighbor(const Polyline2 polyline) {
 	return (vertices.front() - polyline.vertices.front()).length() < EPSILON ||
