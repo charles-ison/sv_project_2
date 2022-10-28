@@ -138,6 +138,7 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
     </ClCompile>
     <ClCompile Include="polyhedron.cpp" />
+    <ClCompile Include="polyline2.cpp" />
     <ClCompile Include="project2.cpp" />
     <ClCompile Include="tmatrix.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
@@ -159,6 +160,8 @@
     <ClInclude Include="ply.h" />
     <ClInclude Include="polyhedron.h" />
     <ClInclude Include="polyline.h" />
+    <ClInclude Include="polyline2.h" />
+    <ClInclude Include="project2.h" />
     <ClInclude Include="tmatrix.h" />
     <ClInclude Include="trackball.h" />
   </ItemGroup>

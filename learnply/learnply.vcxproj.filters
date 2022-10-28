@@ -33,6 +33,9 @@
     <ClCompile Include="project2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="polyline2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="icMatrix.H">
@@ -63,6 +66,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="drawUtil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="polyline2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="project2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
