@@ -128,6 +128,8 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 
 ### R2
 * 100 sub intervals
+* It seems that the contours are conveying where the critical point on the ply file is, which is something we cannot really tell from just the height and color visualizations in project 1
+* The contour line containing the critical point appears to not be smooth, but sits in the location where I would expect to find it. My guess is this happens beacause we use linear interpolation to find the scalar value of the critical point, which is not 100% accurate.
 * R2 One Color:
 
  ![image](r2_one_color.png)
@@ -154,6 +156,8 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
   
 ### R4
 * 100 sub intervals
+* Once again, the countours suggest where it seems the critical point will be on the PLY file without the point even being drawn.
+* With the contour lines vs just colors or height from project 1, the contours reveal a unique curvature on the center of the ply file I did not notice previously.
 * R4 One Color:
 
  ![image](r4_one_color.png)
@@ -180,6 +184,8 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 
 ### R9
 * 50 sub intervals
+* Had to bring down the number of sub intervals as 100 was creating patterns on my laptop screen which distracted from the actual ply shape.
+* Shape here reminds me of a manta ray.
 * R9 One Color:
 
  ![image](r9_one_color.png)
@@ -206,6 +212,7 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 
 ### R10
 * 50 sub intervals
+* Once again the contour lines already let us know where the critical points are and make adding the dot almost unnecessary. 
 * R10 One Color:
 
  ![image](r10_one_color.png)
@@ -232,6 +239,7 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 
 ### R11
 * 50 sub intervals
+* Still having a hard time visually differenting this ply file from R10.
 * R11 One Color:
 
  ![image](r11_one_color.png)
@@ -258,6 +266,7 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 
 ### R12
 * 50 sub intervals
+* I suspect there is an issue with the critical points here, as we should not be able to get two critical points without a local max or minimum separating them. I tried increasing a delta value that would accomdate noise when checking if each saddle existed within each quad, but I had to increase the delta too high to be reasonable before the visualization looked as expected, so I think there might be a bug.
 * R12 One Color:
 
  ![image](r12_one_color.png)
@@ -284,6 +293,7 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 
 ### R13
 * 50 sub intervals
+* I think the contour lines containing the critical points look the most interesting here out of all the plots because they split the file up into quadrants.
 * R13 One Color:
 
  ![image](r13_one_color.png)
@@ -310,6 +320,7 @@ $$\texttt{One eigenvalue is positive and one is negative, so } (\frac{2}{\sqrt{1
 
 ### R14
 * 50 sub intervals
+* Once again reminds me of a manta ray.
 * R14 One Color:
 
  ![image](r14_one_color.png)
